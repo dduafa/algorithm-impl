@@ -9,9 +9,9 @@
  *                      OR
  *
  * 2. an Abstract Syntax Tree (AST)
- * 
+ *
  * ########### PSEUDOCODE ########################################
- * 
+ *
  * if number, push to the output-queue
  * if operator:
  *    check if:
@@ -88,27 +88,17 @@ function isOperator(value) {
     return OPERATORS[value];
 }
 
-assert.equal(
-    JSON.stringify(
-        shunting_yard_algorithm('3 + 4 * 2 / ( 1 - 5 ) ^ 2 ^ 3'.split(''))
-    ),
-    JSON.stringify([
-        '3',
-        '4',
-        '2',
-        '*',
-        '1',
-        '5',
-        '-',
-        '2',
-        '3',
-        '^',
-        '^',
-        '/',
-        '+'
-    ])
+assert.deepEqual(
+    shunting_yard_algorithm('3 + 4 * 2 / ( 1 - 5 ) ^ 2 ^ 3'.split('')),
+    ['3', '4', '2', '*', '1', '5', '-', '2', '3', '^', '^', '/', '+']
 );
-assert.equal(
-    JSON.stringify(shunting_yard_algorithm('3 + 4 * 2 - 9'.split(''))),
-    JSON.stringify(['3', '4', '2', '*', '+', '9', '-'])
-);
+
+assert.deepEqual(shunting_yard_algorithm('3 + 4 * 2 - 9'.split('')), [
+    '3',
+    '4',
+    '2',
+    '*',
+    '+',
+    '9',
+    '-'
+]);
